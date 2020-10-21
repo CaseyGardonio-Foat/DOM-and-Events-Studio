@@ -3,20 +3,27 @@ window.addEventListener("load", function() {
     // put DOM code here to ensure elements have been loaded
     console.log('window loaded');
 
+    let rocketPositionX = 0;
+    let rocktPositionY=0;
+    /*Angela Mitchell's solution: 
+    rocket.style.left = '0px';
+    rocket.style.bottom = '0px';
+    rocket.style.position = 'absolute';*/
+
     let take_off = document.getElementById("takeoff");
     take_off.addEventListener("click", function (event) {
         let response = confirm("Confirm that the shuttle is ready for takeoff.");
         if (response) {
             //flight status change to "shuttle in flight";
-            let flightStatus = document.getElementById("flightStatus");
+            let flightStatus = document.getElementById("flightStatus"); //may not be necessary to declare variable here
             flightStatus.innerHTML = 'Shuttle in flight.';
             //id "shuttleBackground" change to blue
-            let shuttleBackground = document.getElementById('shuttleBackground');
+            let shuttleBackground = document.getElementById('shuttleBackground'); //may not be necessary to declare variable here
             shuttleBackground.style.background = 'blue';
-            //shuttle heigh increase by 10,000 miles
-            let shuttleHeight = document.getElementById('spaceShuttleHeight');
-            shuttleHeight.innerHTML =10000;
-          }
+            //shuttle height increase by 10,000 miles
+            let shuttleHeight = Number(document.getElementById('spaceShuttleHeight')); //may not be necessary to declare variable here
+            shuttleHeight.innerHTML += 10000;
+        }
     });
     
     let land = document.getElementById("landing");
@@ -24,10 +31,13 @@ window.addEventListener("load", function() {
         //A window alert should let the user know "The shuttle is landing. Landing gear engaged."
         response = alert("The shuttle is landing. Landing gear engaged.");
         
+        //tlight status change to "The shuttle has landed."
+        let flightStatus = document.getElementById("flightStatus"); //may not be necessary to declare variable here
+        flightStatus.innerHTML = 'The shuttle has landed.'; 
+        
         //The background color of the shuttle flight screen should change from blue to green.
         let shuttleBackground = document.getElementById('shuttleBackground');
         shuttleBackground.style.background = 'green';
-            //flight status change to "shuttle in flight";
         
         //The shuttle height should go down to 0.
         let shuttleHeight = document.getElementById('spaceShuttleHeight');
@@ -54,26 +64,25 @@ window.addEventListener("load", function() {
         }
     });
     
-    let right = document.getElementById("right");
-    right.addEventListener("click", function (event) {
-        //The rocket image should move 10 px in the direction of the button that was clicked.
-        let shuttle = document.getElementById('rocket');
-        shuttle.style.right += 10;
+    // let right = document.getElementById("right");
+    // right.addEventListener("click", function (event) {
+    //     //The rocket image should move 10 px in the direction of the button that was clicked.
+    //     let shuttle = document.getElementById('rocket');
+    //     shuttle.style.right += 10;
+    // })
+
+    let up = document.getElementById("up");
+    up.addEventListener("click", function (event) {
+       
+        let shuttleHeight = Number(document.getElementById('spaceShuttleHeight')); 
+        shuttleHeight.innerHTML += 10000;
+
+        // let shuttleHeight = Number(document.getElementById('spaceShuttleHeight'));
+        // shuttleHeight.innerHTML += 10000;
+        
+        // let shuttle = document.getElementById('rocket');
+        // shuttle.innerText += 10;
     })
-
-    let up = document.getElementById('up');
-    up.addEventListener('click', function(event){
-
-        let shuttle = document.getElementById('rocket');
-        shuttle.innerText += 10;
-
-        let shuttleHeight = Number(document.getElementById('spaceShuttleHeight'));
-        console.log(typeof shuttleHeight);
-        shuttleHeight = shuttleHeight + 10000;
-    })
-        //The shuttle height should go down to 0.
-        // let shuttleHeight = document.getElementById('spaceShuttleHeight');
-        // shuttleHeight.innerHTML =0;
  
 /*When the "Up", "Down", "Right", and "Left" buttons are clicked, the following should happen:
 
